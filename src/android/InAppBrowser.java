@@ -41,14 +41,16 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-import android.webkit.HttpAuthHandler;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+
+import com.tencent.smtt.sdk.CookieManager;
+import com.tencent.smtt.sdk.CookieSyncManager;
+import com.tencent.smtt.export.external.interfaces.HttpAuthHandler;
+import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
+
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -59,12 +61,12 @@ import android.widget.TextView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.Config;
 import org.apache.cordova.CordovaArgs;
-import org.apache.cordova.CordovaHttpAuthHandler;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.LOG;
 import org.apache.cordova.PluginManager;
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.x5engine.X5CordovaHttpAuthHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -884,7 +886,7 @@ public class InAppBrowser extends CordovaPlugin {
                 settings.setJavaScriptEnabled(true);
                 settings.setJavaScriptCanOpenWindowsAutomatically(true);
                 settings.setBuiltInZoomControls(showZoomControls);
-                settings.setPluginState(android.webkit.WebSettings.PluginState.ON);
+                settings.setPluginState(com.tencent.smtt.sdk.WebSettings.PluginState.ON);
 
                 if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     settings.setMediaPlaybackRequiresUserGesture(mediaPlaybackRequiresUserGesture);
@@ -1250,7 +1252,7 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             }
 
-            if (pluginManager != null && pluginManager.onReceivedHttpAuthRequest(webView, new CordovaHttpAuthHandler(handler), host, realm)) {
+            if (pluginManager != null && pluginManager.onReceivedHttpAuthRequest(webView, new X5CordovaHttpAuthHandler(handler), host, realm)) {
                 return;
             }
 

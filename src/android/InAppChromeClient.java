@@ -24,12 +24,12 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.webkit.JsPromptResult;
-import android.webkit.WebChromeClient;
-import android.webkit.WebStorage;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.webkit.GeolocationPermissions.Callback;
+import com.tencent.smtt.export.external.interfaces.JsPromptResult;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebStorage;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
+import com.tencent.smtt.export.external.interfaces.GeolocationPermissionsCallback;
 
 public class InAppChromeClient extends WebChromeClient {
 
@@ -66,7 +66,7 @@ public class InAppChromeClient extends WebChromeClient {
      * @param callback
      */
     @Override
-    public void onGeolocationPermissionsShowPrompt(String origin, Callback callback) {
+    public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissionsCallback callback) {
         super.onGeolocationPermissionsShowPrompt(origin, callback);
         callback.invoke(origin, true, false);
     }
